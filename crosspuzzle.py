@@ -1,97 +1,97 @@
 
 def test1(vars):
-    a = vars[0]
-    b = vars[1]
-    c = vars[2]
+    a = vars['a']
+    b = vars['b']
+    c = vars['c']
     if (a + b) + c == 15:
         return True
     else:
         return False
 
 def test2(vars):
-    a = vars[0]
-    d = vars[3]
-    g = vars[6]
+    a = vars['a']
+    d = vars['d']
+    g = vars['g']
     if (a + d) - g == 3:
         return True
     else:
         return False
 
 def test3(vars):
-    d = vars[3]
-    e = vars[4]
-    f = vars[5]
+    d = vars['d']
+    e = vars['e']
+    f = vars['f']
     if (d + e) * f == 24:
         return True
     else:
         return False
 
 def test4(vars):
-    b = vars[1]
-    e = vars[4]
-    h = vars[7]
+    b = vars['b']
+    e = vars['e']
+    h = vars['h']
     if (b * e) - h == 12:
         return True
     else:
         return False
 
 def test5(vars):
-    i = vars[8]
-    g = vars[6]
-    h = vars[7]
+    i = vars['i']
+    g = vars['g']
+    h = vars['h']
     if g + h - i == 14:
         return True
     else:
         return False
 
 def test6(vars):
-    c = vars[2]
-    f = vars[5]
-    i = vars[8]
+    c = vars['c']
+    f = vars['f']
+    i = vars['i']
     if c / f / i == 4:
         return True
     else:
         return False
 
-vars = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+vars = {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'e': 0, 'f': 0, 'g': 0, 'h': 0, 'i': 0}
 
 for a in range(1,10):
-    vars[0] = a
+    vars['a'] = a
     for b in range(1,10):
-        if b not in vars:
-            vars[1] = b
+        if b not in vars.values():
+            vars['b'] = b
             for c in range(1,10):
-                if c not in vars:
-                    vars[2] = c
+                if c not in vars.values():
+                    vars['c'] = c
                     if test1(vars):
                         for d in range(1,10):
-                            if d not in vars:
-                                vars[3] = d
+                            if d not in vars.values():
+                                vars['d'] = d
                                 for g in range(1,10):
-                                    if g not in vars:
-                                        vars[6] = g
+                                    if g not in vars.values():
+                                        vars['g'] = g
                                         if test2(vars):
                                             for e in range(1,10):
-                                                if e not in vars:
-                                                    vars[4] = e
+                                                if e not in vars.values():
+                                                    vars['e'] = e
                                                     for f in range(1,10):
-                                                        if f not in vars:
-                                                            vars[5] = f
+                                                        if f not in vars.values():
+                                                            vars['f'] = f
                                                             if test3(vars):
                                                                 for h in range(1,10):
-                                                                    if h not in vars:
-                                                                        vars[7] = h
+                                                                    if h not in vars.values():
+                                                                        vars['h'] = h
                                                                         if test4(vars):
                                                                             for i in range(1,10):
-                                                                                if i not in vars:
-                                                                                    vars[8] = i
+                                                                                if i not in vars.values():
+                                                                                    vars['i'] = i
                                                                                     if test5(vars) and test6(vars):
                                                                                         print(vars)
-                                                                            vars[8] = 0
-                                                                vars[7] = 0
-                                                    vars[5] = 0
-                                            vars[4] = 0
-                                vars[6] = 0
-                        vars[3] = 0
-            vars[2] = 0
-    vars[1] = 0
+                                                                            vars['i'] = 0
+                                                                vars['h'] = 0
+                                                    vars['f'] = 0
+                                            vars['e'] = 0
+                                vars['g'] = 0
+                        vars['d'] = 0
+            vars['c'] = 0
+    vars['b'] = 0
