@@ -1,3 +1,5 @@
+import itertools
+
 tests = [['a', '+', 'b', '+', 'c', 15],
          ['a', '+', 'd', '-', 'g', 3],
          ['d', '+', 'e', '*', 'f', 24],
@@ -15,45 +17,38 @@ def test(vars, tests, number):
         return False
 
 
+count = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 vars = {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'e': 0, 'f': 0, 'g': 0, 'h': 0, 'i': 0}
 
-for a in range(1,10):
-    vars['a'] = a
-    for b in range(1,10):
-        if b not in vars.values():
-            vars['b'] = b
-            for c in range(1,10):
-                if c not in vars.values():
-                    vars['c'] = c
-                    if test(vars, tests, 0):
-                        for d in range(1,10):
-                            if d not in vars.values():
-                                vars['d'] = d
-                                for g in range(1,10):
-                                    if g not in vars.values():
-                                        vars['g'] = g
-                                        if test(vars, tests, 1):
-                                            for e in range(1,10):
-                                                if e not in vars.values():
-                                                    vars['e'] = e
-                                                    for f in range(1,10):
-                                                        if f not in vars.values():
-                                                            vars['f'] = f
-                                                            if test(vars, tests, 2):
-                                                                for h in range(1,10):
-                                                                    if h not in vars.values():
-                                                                        vars['h'] = h
-                                                                        if test(vars, tests, 3):
-                                                                            for i in range(1,10):
-                                                                                if i not in vars.values():
-                                                                                    vars['i'] = i
-                                                                                    if test(vars, tests, 4) and test(vars, tests, 5):
-                                                                                        print(vars)
-                                                                            vars['i'] = 0
-                                                                vars['h'] = 0
-                                                    vars['f'] = 0
-                                            vars['e'] = 0
-                                vars['g'] = 0
+
+for item in list(itertools.product(count, count, count)):
+    if len(item) == len(dict.fromkeys(item)):
+        vars['a'] = item[0]
+        vars['b'] = item[1]
+        vars['c'] = item[2]
+        if test(vars, tests, 0):
+            for item2 in list(itertools.product(count, count)):
+                if len(item + item2) == len(dict.fromkeys(item + item2)):
+                    vars['d'] = item2[0]
+                    vars['g'] = item2[1]
+                    if test(vars, tests, 1):
+                        for item3 in list(itertools.product(count, count, count, count)):
+                            if len(item + item2 + item3) == len(dict.fromkeys(item + item2 + item3)):
+                                vars['e'] = item3[0]
+                                vars['f'] = item3[1]
+                                vars['h'] = item3[2]
+                                vars['i'] = item3[3]
+                                if test(vars, tests, 2) and test(vars, tests, 3) and test(vars, tests, 4) and test(vars, tests, 5):
+                                    print(vars)
+                                else:
+                                    vars['e'] = 0
+                                    vars['f'] = 0
+                                    vars['h'] = 0
+                                    vars['i'] = 0
+                    else:
                         vars['d'] = 0
+                        vars['g'] = 0
+        else:
+            vars['a'] = 0
+            vars['b'] = 0
             vars['c'] = 0
-    vars['b'] = 0
